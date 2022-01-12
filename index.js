@@ -6,9 +6,6 @@ const graphql = require("graphql");
 
 const  app  =  express();
 
-
-
-
 const ContactType = new graphql.GraphQLObjectType({
     name: "Contact",
     fields: {
