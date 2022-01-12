@@ -1,5 +1,6 @@
 const  express  =  require('express');
 const  sqlite3  =  require('sqlite3').verbose();
+const cors = require('cors');
 
 const ExpressGraphQL = require("express-graphql");
 const graphql = require("graphql");
@@ -170,10 +171,7 @@ const schema = new graphql.GraphQLSchema({
     mutation: mutationType 
 });
 
-
-
-
-
+app.use(cors())
 app.use("/graphql", ExpressGraphQL({ schema: schema, graphiql: true}));
 
 app.listen(4000, () => {
