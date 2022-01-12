@@ -4,6 +4,8 @@ Node & Express GraphQL API Example
 
 ## Sqlite3 Notes
 
+### Installation
+
 ```
 ✗ brew search sqlite
 ==> Formulae
@@ -13,17 +15,9 @@ sqlite ✔                           sqlite-analyzer                    sqlite-u
 db-browser-for-sqlite                                      sqlitemanager                                              homebrew/cask-versions/db-browser-for-sqlite-nightly
 mesasqlite                                                 sqlitestudio
 navicat-for-sqlite                                         sqlpro-for-sqlite
-
- ✗ brew install --cask sqlitemanager
-➜  server git:(master) ✗ brew uninstall --cask sqlitemanager
-➜  server git:(master) ✗ brew install --cask sqlitestudio
-==> Moving App 'SQLiteStudio.app' to '/Applications/SQLiteStudio.app'
-➜  server git:(master) ✗ open ./my.db
 ```
 
-* See [pawelsalawa/sqlitestudio](https://github.com/pawelsalawa/sqlitestudio) and [wiki](https://github.com/pawelsalawa/sqlitestudio/wiki)
-* The free version of sqlitemanager is quite limited. Not recommended. Using sqlitestudio instead
-
+### Repl
 
 ```
 ➜  server git:(master) ✗ sqlite3 my.db 
@@ -38,6 +32,24 @@ CREATE TABLE contacts (
         lastName text,
         email text UNIQUE);
 ```
+
+### Sqlite Studio
+
+```
+ ✗ brew install --cask sqlitemanager
+➜  server git:(master) ✗ brew uninstall --cask sqlitemanager
+```
+* The free version of sqlitemanager is quite limited. Not recommended. Using sqlitestudio instead
+
+```
+➜  server git:(master) ✗ brew install --cask sqlitestudio
+==> Moving App 'SQLiteStudio.app' to '/Applications/SQLiteStudio.app'
+➜  server git:(master) ✗ open ./my.db
+```
+
+* See [pawelsalawa/sqlitestudio](https://github.com/pawelsalawa/sqlitestudio) and [wiki](https://github.com/pawelsalawa/sqlitestudio/wiki)
+
+
 
 ## Examples of GraphQL Queries 
 
