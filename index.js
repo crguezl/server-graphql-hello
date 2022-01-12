@@ -1,10 +1,13 @@
 const  express  =  require('express');
 const cors = require('cors');
-const database = require('./model')
+const { database, createContactTable, getById, getAll, insert } = require('./model')
 const ExpressGraphQL = require("express-graphql");
 const graphql = require("graphql");
 
 const  app  =  express();
+
+
+createContactTable();
 
 const ContactType = new graphql.GraphQLObjectType({
     name: "Contact",
@@ -20,19 +23,7 @@ var queryType = new graphql.GraphQLObjectType({
     fields: {
         contacts: {
             type: graphql.GraphQLList(ContactType),
-            resolve: (root, args, context, info) => {
-                return new Promise((resolve, reject) => {
-                    
-                    database.all("SELECT * FROM contacts;", function(err, rows) {  
-                        if(err){
-                            reject([]);
-                        }
-                        resolve(rows);
-                    });
-                });
-                
-                
-            }
+            resolve: (root, args, context, info) => getAll()
         },
         contact:{
             type: ContactType,
@@ -41,17 +32,7 @@ var queryType = new graphql.GraphQLObjectType({
                     type: new graphql.GraphQLNonNull(graphql.GraphQLID)
                 }               
             },
-            resolve: (root, {id}, context, info) => {
-                return new Promise((resolve, reject) => {
-                
-                    database.all("SELECT * FROM contacts WHERE id = (?);",[id], function(err, rows) {                           
-                        if(err){
-                            reject(null);
-                        }
-                        resolve(rows[0]);
-                    });
-                });
-            }
+            resolve: (root, {id}, context, info) => getById(id)
         }
     }
 });
@@ -72,27 +53,7 @@ var mutationType = new graphql.GraphQLObjectType({
               type: new graphql.GraphQLNonNull(graphql.GraphQLString)
           } 
         },
-        resolve: (root, {firstName , lastName, email}) => {
-            return new Promise((resolve, reject) => {
-
-                database.run('INSERT INTO contacts (firstName, lastName, email) VALUES (?,?,?);', [firstName , lastName, email], (err) => {
-                    if(err) {
-                        reject(null);
-                    }
-                    database.get("SELECT last_insert_rowid() as id", (err, row) => {
-                        
-                        resolve({
-                            id: row["id"],
-                            firstName: firstName,
-                            lastName: lastName,
-                            email: email
-                        });
-                    });
-                });
-            })
-
-
-        }
+        resolve: (root, {firstName , lastName, email}) => insert({firstName , lastName, email})
       },
       updateContact: {
         type: graphql.GraphQLString,

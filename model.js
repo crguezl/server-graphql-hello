@@ -12,6 +12,52 @@ const  createContactTable  = () => {
     return  database.run(query);
 }
 
-createContactTable();
+function getById(id){
+    return new Promise((resolve, reject) => {                
+        database.all("SELECT * FROM contacts WHERE id = (?);",[id], function(err, rows) {                           
+            if(err){
+                reject(null);
+            }
+            resolve(rows[0]);
+        });
+    });
+}
 
-module.exports = database
+function getAll() {
+    return new Promise((resolve, reject) => {
+        database.all("SELECT * FROM contacts;", function(err, rows) {  
+            if(err){
+                reject([]);
+            }
+            resolve(rows);
+        });
+    })
+}
+
+function insert({firstName, lastName, email}) {
+    return new Promise((resolve, reject) => {
+
+        database.run('INSERT INTO contacts (firstName, lastName, email) VALUES (?,?,?);', [firstName , lastName, email], (err) => {
+            if(err) {
+                reject(null);
+            }
+            database.get("SELECT last_insert_rowid() as id", (err, row) => {
+                
+                resolve({
+                    id: row["id"],
+                    firstName: firstName,
+                    lastName: lastName,
+                    email: email
+                });
+            });
+        });
+    })
+}
+
+module.exports = { 
+    database,
+    createContactTable,
+    getAll,
+    getById,
+    insert
+}
