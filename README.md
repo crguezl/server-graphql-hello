@@ -49,6 +49,9 @@ CREATE TABLE contacts (
 
 * See [pawelsalawa/sqlitestudio](https://github.com/pawelsalawa/sqlitestudio) and [wiki](https://github.com/pawelsalawa/sqlitestudio/wiki)
 
+### The npm module
+
+* [mapbox/node-sqlite3](https://github.com/mapbox/node-sqlite3)
 
 
 ## Examples of GraphQL Queries 
