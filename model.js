@@ -65,8 +65,7 @@ function updateContact({id, firstName , lastName, email}) {
             if(err) {
                 reject(null);
             }
-            database.get("SELECT last_insert_rowid() as id", (err, row) => {
-                
+            database.all("SELECT * FROM contacts WHERE id = (?);",[id], function(err, rows) {                
                 resolve({
                     id: id,
                     firstName: firstName,

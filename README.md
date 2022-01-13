@@ -69,8 +69,26 @@ query contacts {
   }
 }
 
+query contact {
+  contact(id: 7) {
+    id
+    firstName
+    lastName
+    email
+  }
+}
+
 mutation create_jon {
     createContact(firstName: "Jon", lastName: "Snow", email: "jonsnow@thenightswatch.com") {
+        id,
+        firstName,
+        lastName,
+        email
+    }
+}
+
+mutation create_nuevo {
+    createContact(firstName: "Juanita", lastName: "Xiu", email: "juanita@chuchu.com") {
         id,
         firstName,
         lastName,
@@ -89,16 +107,26 @@ mutation create_aegon {
 
 mutation update_aegon {
   updateContact(
-    id: 1, 
+    id: 7,
     firstName: "Aegon", 
-    lastName: "Targaryen", 
-    email: "aegontargaryen@tronodehierro.com")
+    lastName: "Veranos Largos", 
+    email: "aegontargaryen@tronodehierro.es") {
+    id
+    firstName
+    lastName
+    email
+  }
 }
 
 mutation delete {
-    deleteContact(id: 1)
+    deleteContact(id: 12)
 }
 ```
+
+## Heroku 
+
+* [Deploying Node.js Apps on Heroku](https://devcenter.heroku.com/articles/deploying-nodejs)
+
 
 ## References
 

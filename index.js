@@ -38,7 +38,7 @@ contactSchemaStr = `
 	"""
 	To modify the contact
 	"""
-    updateContact(id: ID!, firstName: String, lastName: String, email: String!): Contact
+    updateContact(id: ID!, firstName: String, lastName: String, email: String): Contact
 
     deleteContact(id: ID!): String
   }
