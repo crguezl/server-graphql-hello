@@ -54,10 +54,25 @@ function insert({firstName, lastName, email}) {
     })
 }
 
+function updateContacts({id, firstName , lastName, email}) {
+    console.log(`updateContacts({${id}, ${firstName} , ${lastName}, ${email})`)
+    return new Promise((resolve, reject) => {
+
+        database.run('UPDATE contacts SET firstName = (?), lastName = (?), email = (?) WHERE id = (?);', [firstName, lastName, email, id], (err) => {
+            if(err) {
+                reject(err);
+            }
+            resolve(`Contact #${id} updated`);
+            
+        });
+    })
+}
+
 module.exports = { 
     database,
     createContactTable,
     getAll,
     getById,
-    insert
+    insert,
+    updateContacts
 }
