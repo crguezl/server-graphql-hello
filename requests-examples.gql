@@ -1,0 +1,61 @@
+query contacts {
+  contacts {
+    id
+    firstName
+    lastName
+    email
+  }
+}
+
+query contact {
+  contact(id: 7) {
+    id
+    firstName
+    lastName
+    email
+  }
+}
+
+mutation create_jon {
+    createContact(firstName: "Jon", lastName: "Snow", email: "jonsnow@thenightswatch.com") {
+        id,
+        firstName,
+        lastName,
+        email
+    }
+}
+
+mutation create_nuevo {
+    createContact(firstName: "Juanita", lastName: "Rodriguez Leon", email: "juanita@binarysex.com") {
+        id,
+        firstName,
+        lastName,
+        email
+    }
+}
+
+mutation create_aegon {
+    createContact(firstName: "Aegon", lastName: "Targaryen", email: "aegontargaryen@ironthrone.com") {
+        id,
+        firstName,
+        lastName,
+        email
+    }
+}
+
+mutation update_aegon {
+  updateContact(
+    id: 7,
+    firstName: "Aegon", 
+    lastName: "Veranos Largos", 
+    email: "aegontargaryen@tronodehierro.es") {
+    id
+    firstName
+    lastName
+    email
+  }
+}
+
+mutation delete {
+    deleteContact(id: 12)
+}

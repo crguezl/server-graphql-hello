@@ -15,6 +15,7 @@
     "express": "latest",
     "express-graphql": "latest",
     "graphql": "latest",
+    "morgan": "latest",
     "sqlite3": "latest"
   }
 }

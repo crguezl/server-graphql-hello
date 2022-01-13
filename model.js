@@ -12,7 +12,7 @@ const  createContactTable  = () => {
     return  database.run(query);
 }
 
-function getContact(id){
+function getContact({id}){
     return new Promise((resolve, reject) => {                
         database.all("SELECT * FROM contacts WHERE id = (?);",[id], function(err, rows) {                           
             if(err){
@@ -35,6 +35,8 @@ function getContacts() {
 }
 
 function createContact({firstName, lastName, email}) {
+    console.log(`**************createContact({${firstName} , ${lastName}, ${email})`)
+
     return new Promise((resolve, reject) => {
 
         database.run('INSERT INTO contacts (firstName, lastName, email) VALUES (?,?,?);', [firstName , lastName, email], (err) => {
@@ -61,11 +63,18 @@ function updateContact({id, firstName , lastName, email}) {
 
         database.run('UPDATE contacts SET firstName = (?), lastName = (?), email = (?) WHERE id = (?);', [firstName, lastName, email, id], (err) => {
             if(err) {
-                reject(err);
+                reject(null);
             }
-            resolve(`Contact #${id} updated`);
-            
-        });
+            database.get("SELECT last_insert_rowid() as id", (err, row) => {
+                
+                resolve({
+                    id: id,
+                    firstName: firstName,
+                    lastName: lastName,
+                    email: email
+                });
+            });
+        })
     })
 }
 

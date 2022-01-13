@@ -1,4 +1,5 @@
 const express = require("express");
+const morgan = require("morgan");
 const cors = require("cors");
 const {
   database,
@@ -37,9 +38,9 @@ contactSchemaStr = `
 	"""
 	To modify the contact
 	"""
-    updateContact(firstName: String, lastName: String, email: String!): Contact
+    updateContact(id: ID!, firstName: String, lastName: String, email: String!): Contact
 
-    deleteContact(id: ID!): Contact
+    deleteContact(id: ID!): String
   }
 `;
 const contactSchema = buildSchema(contactSchemaStr)
@@ -52,6 +53,9 @@ const root = {
 }
 
 const app = express();
+app.use(morgan('combined')) // Standard Apache combined log output.
+
+
 app.use(cors());
 
 app.use(
