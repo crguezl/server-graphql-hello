@@ -7,6 +7,7 @@ const {
   getAll,
   insert,
   updateContacts,
+  deleteContact,
 } = require("./model");
 const ExpressGraphQL = require("express-graphql");
 const graphql = require("graphql");
@@ -87,16 +88,7 @@ var mutationType = new graphql.GraphQLObjectType({
           type: new graphql.GraphQLNonNull(graphql.GraphQLID),
         },
       },
-      resolve: (root, { id }) => {
-        return new Promise((resolve, reject) => {
-          database.run("DELETE from contacts WHERE id =(?);", [id], (err) => {
-            if (err) {
-              reject(err);
-            }
-            resolve(`Contact #${id} deleted`);
-          });
-        });
-      },
+      resolve: (root, { id }) => deleteContact({ id }),
     },
   },
 });

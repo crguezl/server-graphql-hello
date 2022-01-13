@@ -54,6 +54,7 @@ function insert({firstName, lastName, email}) {
     })
 }
 
+// Not working
 function updateContacts({id, firstName , lastName, email}) {
     console.log(`updateContacts({${id}, ${firstName} , ${lastName}, ${email})`)
     return new Promise((resolve, reject) => {
@@ -68,11 +69,23 @@ function updateContacts({id, firstName , lastName, email}) {
     })
 }
 
+const deleteContact = ({ id }) => {
+    return new Promise((resolve, reject) => {
+      database.run("DELETE from contacts WHERE id =(?);", [id], (err) => {
+        if (err) {
+          reject(err);
+        }
+        resolve(`Contact #${id} deleted`);
+      });
+    });
+  }
+
 module.exports = { 
     database,
     createContactTable,
     getAll,
     getById,
     insert,
-    updateContacts
+    updateContacts,
+    deleteContact
 }
