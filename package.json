@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
-    "push": "git ci -am \"$(git diff --name-only | tr  '\n' ' ')\"; git push"
+    "push": "git ci -am \"changes in: $(git diff --name-only | tr  '\n' ' ')\"; git push"
   },
   "keywords": [],
   "author": "",
