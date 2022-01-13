@@ -12,7 +12,7 @@ const  createContactTable  = () => {
     return  database.run(query);
 }
 
-function getById(id){
+function getContact(id){
     return new Promise((resolve, reject) => {                
         database.all("SELECT * FROM contacts WHERE id = (?);",[id], function(err, rows) {                           
             if(err){
@@ -23,7 +23,7 @@ function getById(id){
     });
 }
 
-function getAll() {
+function getContacts() {
     return new Promise((resolve, reject) => {
         database.all("SELECT * FROM contacts;", function(err, rows) {  
             if(err){
@@ -34,7 +34,7 @@ function getAll() {
     })
 }
 
-function insert({firstName, lastName, email}) {
+function createContact({firstName, lastName, email}) {
     return new Promise((resolve, reject) => {
 
         database.run('INSERT INTO contacts (firstName, lastName, email) VALUES (?,?,?);', [firstName , lastName, email], (err) => {
@@ -55,8 +55,8 @@ function insert({firstName, lastName, email}) {
 }
 
 // Not working
-function updateContacts({id, firstName , lastName, email}) {
-    console.log(`updateContacts({${id}, ${firstName} , ${lastName}, ${email})`)
+function updateContact({id, firstName , lastName, email}) {
+    console.log(`updateContact({${id}, ${firstName} , ${lastName}, ${email})`)
     return new Promise((resolve, reject) => {
 
         database.run('UPDATE contacts SET firstName = (?), lastName = (?), email = (?) WHERE id = (?);', [firstName, lastName, email, id], (err) => {
@@ -83,9 +83,9 @@ const deleteContact = ({ id }) => {
 module.exports = { 
     database,
     createContactTable,
-    getAll,
-    getById,
-    insert,
-    updateContacts,
+    getContacts,
+    getContact,
+    createContact,
+    updateContact,
     deleteContact
 }
