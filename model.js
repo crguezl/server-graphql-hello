@@ -56,7 +56,6 @@ function createContact({firstName, lastName, email}) {
     })
 }
 
-// Not working
 function updateContact({id, firstName , lastName, email}) {
     console.log(`updateContact({${id}, ${firstName} , ${lastName}, ${email})`)
     return new Promise((resolve, reject) => {
