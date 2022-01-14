@@ -1,0 +1,22 @@
+{
+  "name": "node-graphql-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "push": "git ci -am \"changes in: $(git diff --name-only | tr  '\n' ' ')\"; git push",
+    "sql": "cat mydb.sql | sqlite3 my.db"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "latest",
+    "express": "latest",
+    "express-graphql": "latest",
+    "graphql": "latest",
+    "morgan": "latest",
+    "sqlite3": "latest"
+  }
+}
