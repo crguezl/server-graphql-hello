@@ -1,6 +1,16 @@
+
 # Node Express Graphql API
 
 Node & Express GraphQL API Example
+
+## Read
+
+* [Build a GraphQL API with Node](https://blog.jscrambler.com/build-a-graphql-api-with-node/) By Ahmed Bouchefra
+* [Building a CRUD App with Vue and GraphQL](https://blog.jscrambler.com/building-a-crud-app-with-vue-and-graphql/) By Ahmed Bouchefra
+
+## Solution
+
+For the solution see branch [solution](https://github.com/crguezl/server-graphql-hello/tree/solution) in this repo [crguezl/server-graphql-hello](https://github.com/crguezl/server-graphql-hello)
 
 ## Super repo
 
