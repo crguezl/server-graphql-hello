@@ -2,6 +2,11 @@
 
 Node & Express GraphQL API Example
 
+## Super repo
+
+* <https://github.com/crguezl/fullstack-graphql-vue>
+
+
 ## Sqlite3 Notes
 
 ### Installation
