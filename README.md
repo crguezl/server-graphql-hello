@@ -109,7 +109,6 @@ See the queries in file [requests-examples.gql](requests-examples.gql)
 
 * [Deploying Node.js Apps on Heroku](https://devcenter.heroku.com/articles/deploying-nodejs)
 
-
 ## References
 
 * [Build a GraphQL API with Node](https://blog.jscrambler.com/build-a-graphql-api-with-node/) By Ahmed Bouchefra
