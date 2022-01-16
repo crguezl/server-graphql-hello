@@ -105,7 +105,6 @@ graphql playground at <localhost:4000/graphql>
 
 See the queries in file [requests-examples.gql](requests-examples.gql)
 
-
 ## Heroku 
 
 * [Deploying Node.js Apps on Heroku](https://devcenter.heroku.com/articles/deploying-nodejs)
@@ -115,3 +114,5 @@ See the queries in file [requests-examples.gql](requests-examples.gql)
 
 * [Build a GraphQL API with Node](https://blog.jscrambler.com/build-a-graphql-api-with-node/) By Ahmed Bouchefra
 * [Building a CRUD App with Vue and GraphQL](https://blog.jscrambler.com/building-a-crud-app-with-vue-and-graphql/) By Ahmed Bouchefra
+* [A similar example is in crguezl/message-board-fullstack](https://github.com/crguezl/message-board-fullstack) it is based in the "[Build a full stack message board with Node/Express/MongoDB/Vue.js/Bootstrap](https://youtu.be/2xIoWm08SBM)" YouTube video by Coding Garden (2h. 15 min. approx.). It includes a deploy in Heroku
+* Another similar example including authentication is the one base on freeCodeCamp.org video [Full Stack Web App in Vue.js & Express.js](https://ull-mii-sytws-2122.github.io/tema3-web/full-stack-web-app-using-vuejs-and-express.html)
