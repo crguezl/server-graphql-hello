@@ -1,7 +1,12 @@
 
-# Node Express Graphql API
+# Node Express Graphql Server with Vue Client
 
-Node & Express GraphQL API Example
+Lab to learn how to build both sides: a GraphQL Server using a SQL DataBase and a Vue.js Client 
+
+
+## Super repo for this lab
+
+* <https://github.com/crguezl/fullstack-graphql-vue>
 
 ## Read
 
@@ -16,6 +21,30 @@ For the solution see branch [solution](https://github.com/crguezl/server-graphql
 
 * <https://github.com/crguezl/fullstack-graphql-vue>
 
+## Technologies Used
+
+```
+➜  server git:(main) ✗ jq '.dependencies'  package.json
+{
+  "cors": "latest",
+  "express": "latest",
+  "express-graphql": "latest",
+  "graphql": "latest",
+  "morgan": "latest",
+  "sequelize": "^6.13.0",
+  "sqlite3": "latest"
+}
+```
+
+## Sequelize
+
+I have written a minimal intro to sequelize in [crguezl/learning-sequelize](https://github.com/crguezl/learning-sequelize)
+
+* [Getting Sarted](https://sequelize.org/v7/manual/getting-started.html)
+* [Geters and Setters](https://sequelize.org/master/manual/getters-setters-virtuals.html)
+* [API Reference](https://sequelize.org/master/class/lib/sequelize.js~Sequelize.html)
+* [Updating an Instance](https://sequelize.org/master/manual/model-instances.html#updating-an-instance)
+* [Deleting an Instance](https://sequelize.org/master/manual/model-instances.html#deleting-an-instance)
 
 ## Sqlite3 Notes
 
