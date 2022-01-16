@@ -1,11 +1,40 @@
-# Node Express Graphql API
 
-Node & Express GraphQL API Example
+# Node Express Graphql Server with Vue Client
+
+Lab to learn how to build both sides: a GraphQL Server using a SQL DataBase and a Vue.js Client 
+
+
+## Super repo for this lab
+
+* <https://github.com/crguezl/fullstack-graphql-vue>
+
+## Read
+
+* [Build a GraphQL API with Node](https://blog.jscrambler.com/build-a-graphql-api-with-node/) By Ahmed Bouchefra
+* [Building a CRUD App with Vue and GraphQL](https://blog.jscrambler.com/building-a-crud-app-with-vue-and-graphql/) By Ahmed Bouchefra
+
+## Solution
+
+For the solution see branch [solution](https://github.com/crguezl/server-graphql-hello/tree/solution) in this repo [crguezl/server-graphql-hello](https://github.com/crguezl/server-graphql-hello)
 
 ## Super repo
 
 * <https://github.com/crguezl/fullstack-graphql-vue>
 
+## Technologies Used
+
+```
+➜  server git:(main) ✗ jq '.dependencies'  package.json
+{
+  "cors": "latest",
+  "express": "latest",
+  "express-graphql": "latest",
+  "graphql": "latest",
+  "morgan": "latest",
+  "sequelize": "^6.13.0",
+  "sqlite3": "latest"
+}
+```
 
 ## Sequelize
 
@@ -74,76 +103,15 @@ CREATE TABLE contacts (
 One you have installed the dependencies and run `npm i`  and `npm start` you can make graphql queries and mutations visiting the 
 graphql playground at <localhost:4000/graphql>
 
-```gql 
-query contacts {
-  contacts {
-    id
-    firstName
-    lastName
-    email
-  }
-}
-
-query contact {
-  contact(id: 7) {
-    id
-    firstName
-    lastName
-    email
-  }
-}
-
-mutation create_jon {
-    createContact(firstName: "Jon", lastName: "Snow", email: "jonsnow@thenightswatch.com") {
-        id,
-        firstName,
-        lastName,
-        email
-    }
-}
-
-mutation create_nuevo {
-    createContact(firstName: "Juanita", lastName: "Xiu", email: "juanita@chuchu.com") {
-        id,
-        firstName,
-        lastName,
-        email
-    }
-}
-
-mutation create_aegon {
-    createContact(firstName: "Aegon", lastName: "Targaryen", email: "aegontargaryen@ironthrone.com") {
-        id,
-        firstName,
-        lastName,
-        email
-    }
-}
-
-mutation update_aegon {
-  updateContact(
-    id: 7,
-    firstName: "Aegon", 
-    lastName: "Veranos Largos", 
-    email: "aegontargaryen@tronodehierro.es") {
-    id
-    firstName
-    lastName
-    email
-  }
-}
-
-mutation delete {
-    deleteContact(id: 12)
-}
-```
+See the queries in file [requests-examples.gql](requests-examples.gql)
 
 ## Heroku 
 
 * [Deploying Node.js Apps on Heroku](https://devcenter.heroku.com/articles/deploying-nodejs)
 
-
 ## References
 
 * [Build a GraphQL API with Node](https://blog.jscrambler.com/build-a-graphql-api-with-node/) By Ahmed Bouchefra
 * [Building a CRUD App with Vue and GraphQL](https://blog.jscrambler.com/building-a-crud-app-with-vue-and-graphql/) By Ahmed Bouchefra
+* [A similar example is in crguezl/message-board-fullstack](https://github.com/crguezl/message-board-fullstack) it is based in the "[Build a full stack message board with Node/Express/MongoDB/Vue.js/Bootstrap](https://youtu.be/2xIoWm08SBM)" YouTube video by Coding Garden (2h. 15 min. approx.). It includes a deploy in Heroku
+* Another similar example including authentication is the one base on freeCodeCamp.org video [Full Stack Web App in Vue.js & Express.js](https://ull-mii-sytws-2122.github.io/tema3-web/full-stack-web-app-using-vuejs-and-express.html)
