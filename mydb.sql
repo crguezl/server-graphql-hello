@@ -1,6 +1,8 @@
 --
 -- File generated with SQLiteStudio v3.3.3 on vie ene 14 13:33:29 2022
---
+-- Run: 
+-- cat mydb.sql | sqlite3 my.db 
+-- to create the data base
 -- Text encoding used: UTF-8
 --
 PRAGMA foreign_keys = off;
