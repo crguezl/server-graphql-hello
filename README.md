@@ -103,69 +103,8 @@ CREATE TABLE contacts (
 One you have installed the dependencies and run `npm i`  and `npm start` you can make graphql queries and mutations visiting the 
 graphql playground at <localhost:4000/graphql>
 
-```gql 
-query contacts {
-  contacts {
-    id
-    firstName
-    lastName
-    email
-  }
-}
+See the queries in file [requests-examples.gql](requests-examples.gql)
 
-query contact {
-  contact(id: 7) {
-    id
-    firstName
-    lastName
-    email
-  }
-}
-
-mutation create_jon {
-    createContact(firstName: "Jon", lastName: "Snow", email: "jonsnow@thenightswatch.com") {
-        id,
-        firstName,
-        lastName,
-        email
-    }
-}
-
-mutation create_nuevo {
-    createContact(firstName: "Juanita", lastName: "Xiu", email: "juanita@chuchu.com") {
-        id,
-        firstName,
-        lastName,
-        email
-    }
-}
-
-mutation create_aegon {
-    createContact(firstName: "Aegon", lastName: "Targaryen", email: "aegontargaryen@ironthrone.com") {
-        id,
-        firstName,
-        lastName,
-        email
-    }
-}
-
-mutation update_aegon {
-  updateContact(
-    id: 7,
-    firstName: "Aegon", 
-    lastName: "Veranos Largos", 
-    email: "aegontargaryen@tronodehierro.es") {
-    id
-    firstName
-    lastName
-    email
-  }
-}
-
-mutation delete {
-    deleteContact(id: 12)
-}
-```
 
 ## Heroku 
 
