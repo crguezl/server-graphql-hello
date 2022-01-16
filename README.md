@@ -21,7 +21,7 @@ For the solution see branch [solution](https://github.com/crguezl/server-graphql
 
 * <https://github.com/crguezl/fullstack-graphql-vue>
 
-## Technologies Used
+## Technologies Used in the Server
 
 ```
 ➜  server git:(main) ✗ jq '.dependencies'  package.json
