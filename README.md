@@ -12,6 +12,8 @@ Lab to learn how to build both sides: a GraphQL Server using a SQL DataBase and 
 
 * [Build a GraphQL API with Node](https://blog.jscrambler.com/build-a-graphql-api-with-node/) By Ahmed Bouchefra
 * [Building a CRUD App with Vue and GraphQL](https://blog.jscrambler.com/building-a-crud-app-with-vue-and-graphql/) By Ahmed Bouchefra
+  * In this version we are using sequelize to manage the data based
+  * Also we have strongly simplified the GraphQL API
 
 ## Solution
 
@@ -93,7 +95,7 @@ CREATE TABLE contacts (
 
 * See [pawelsalawa/sqlitestudio](https://github.com/pawelsalawa/sqlitestudio) and [wiki](https://github.com/pawelsalawa/sqlitestudio/wiki)
 
-### The npm module
+### The Sqlite3 npm module
 
 * [mapbox/node-sqlite3](https://github.com/mapbox/node-sqlite3)
 
