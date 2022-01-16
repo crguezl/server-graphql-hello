@@ -17,6 +17,7 @@
     "express-graphql": "latest",
     "graphql": "latest",
     "morgan": "latest",
+    "sequelize": "^6.13.0",
     "sqlite3": "latest"
   }
 }

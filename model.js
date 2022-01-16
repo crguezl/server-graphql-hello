@@ -1,98 +1,31 @@
-const  sqlite3  =  require('sqlite3').verbose();
-const database = new sqlite3.Database("./my.db");
+const path = require("path");
+const { Sequelize, Model, DataTypes } = require("sequelize");
+//const sequelize = new Sequelize("sqlite::memory:");
 
-const  createContactTable  = () => {
-    const  query  =  `
-        CREATE TABLE IF NOT EXISTS contacts (
-        id integer PRIMARY KEY,
-        firstName text,
-        lastName text,
-        email text UNIQUE)`;
+const sequelize = new Sequelize({
+  dialect: "sqlite",
+  storage: path.join(__dirname, "my.db"),
+  logging: true,
+});
 
-    return  database.run(query);
-}
+debugger;
 
-function getContact({id}){
-    return new Promise((resolve, reject) => {                
-        database.all("SELECT * FROM contacts WHERE id = (?);",[id], function(err, rows) {                           
-            if(err){
-                reject(null);
-            }
-            resolve(rows[0]);
-        });
-    });
-}
+class Contact extends Model {}
+Contact.init(
+  {
+    firstName: DataTypes.STRING,
+    lastName: DataTypes.STRING,
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+    },
+  },
+  { sequelize, modelName: "Contact" }
+);
 
-function getContacts() {
-    return new Promise((resolve, reject) => {
-        database.all("SELECT * FROM contacts;", function(err, rows) {  
-            if(err){
-                reject([]);
-            }
-            resolve(rows);
-        });
-    })
-}
 
-function createContact({firstName, lastName, email}) {
-    console.log(`**************createContact({${firstName} , ${lastName}, ${email})`)
-
-    return new Promise((resolve, reject) => {
-
-        database.run('INSERT INTO contacts (firstName, lastName, email) VALUES (?,?,?);', [firstName , lastName, email], (err) => {
-            if(err) {
-                reject(null);
-            }
-            database.get("SELECT last_insert_rowid() as id", (err, row) => {
-                
-                resolve({
-                    id: row["id"],
-                    firstName: firstName,
-                    lastName: lastName,
-                    email: email
-                });
-            });
-        });
-    })
-}
-
-function updateContact({id, firstName , lastName, email}) {
-    console.log(`updateContact({${id}, ${firstName} , ${lastName}, ${email})`)
-    return new Promise((resolve, reject) => {
-
-        database.run('UPDATE contacts SET firstName = (?), lastName = (?), email = (?) WHERE id = (?);', [firstName, lastName, email, id], (err) => {
-            if(err) {
-                reject(null);
-            }
-            database.all("SELECT * FROM contacts WHERE id = (?);",[id], function(err, rows) {                
-                resolve({
-                    id: id,
-                    firstName: firstName,
-                    lastName: lastName,
-                    email: email
-                });
-            });
-        })
-    })
-}
-
-const deleteContact = ({ id }) => {
-    return new Promise((resolve, reject) => {
-      database.run("DELETE from contacts WHERE id =(?);", [id], (err) => {
-        if (err) {
-          reject(err);
-        }
-        resolve(`Contact #${id} deleted`);
-      });
-    });
-  }
-
-module.exports = { 
-    database,
-    createContactTable,
-    getContacts,
-    getContact,
-    createContact,
-    updateContact,
-    deleteContact
-}
+module.exports = {
+  sequelize,
+  Contact,
+};

@@ -2,21 +2,17 @@ const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
 const {
-  database,
-  createContactTable,
-  getContact,
-  getContacts,
-  createContact,
-  updateContact,
-  deleteContact,
+  sequelize,
+  Contact
 } = require("./model");
-const { graphqlHTTP } = require("express-graphql")
+const { graphqlHTTP } = require("express-graphql");
 const graphql = require("graphql");
 const buildSchema = graphql.buildSchema;
 
-createContactTable();
-
-contactSchemaStr = `
+(async () => {
+  await sequelize.sync();
+  
+  contactSchemaStr = `
   type Contact {
       id: ID!
       firstName: String
@@ -43,33 +39,41 @@ contactSchemaStr = `
     deleteContact(id: ID!): String
   }
 `;
-const contactSchema = buildSchema(contactSchemaStr)
-const root = {
-    contacts: getContacts,
-    contact: getContact,
-    createContact: createContact,
-    updateContact: updateContact,
-    deleteContact: deleteContact,
-}
+  const contactSchema = buildSchema(contactSchemaStr);
 
-const app = express();
-app.use(morgan('combined')) // Standard Apache combined log output.
+  const root = {
+    contacts: () => Contact.findAll(),
+    contact: ({id}) => Contact.findOne({where: {id: id}}),
 
+    createContact: ({ firstName, lastName, email }) => Contact.create({ email: email, firstName: firstName, lastName: lastName}),
+    updateContact: async ({ id, firstName, lastName, email }) => {
+      let c = await Contact.findOne({where: {id: id}});
+      await c.update({ firstName, lastName, email });
+      return c;
+    },
+    deleteContact: ({ id }) => Contact.Destroy({ where: { id: id } }),
+  };
 
-app.use(cors());
+  const app = express();
+  app.use(morgan("combined")); // Standard Apache combined log output.
 
-app.use(
-    '/graphql',
+  app.use(cors());
+
+  
+  app.use(
+    "/graphql",
     graphqlHTTP((request, response, next) => ({
       schema: contactSchema,
       rootValue: root,
       graphiql: true,
-      context: { database: database, req: request, res: response, next: next }
-    })),
+      context: { Contact: Contact, req: request, res: response, next: next },
+    }))
   );
 
-const port = process.argv[2] || 4000;
+  const port = process.argv[2] || 4000;
 
-app.listen(port, () => {
-  console.log(`Graphiql at http://localhost:${port}/graphql.`);
-});
+  app.listen(port, () => {
+    console.log(`Graphiql at http://localhost:${port}/graphql.`);
+  });
+
+})();
