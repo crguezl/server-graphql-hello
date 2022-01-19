@@ -8,11 +8,12 @@ const {
 const { graphqlHTTP } = require("express-graphql");
 const graphql = require("graphql");
 const buildSchema = graphql.buildSchema;
+const gql = s => buildSchema(s[0]); // Just for syntax  coloring
 
 (async () => {
   await sequelize.sync();
   
-  contactSchemaStr = `
+  const contactSchema = gql`
   type Contact {
       id: ID!
       firstName: String
@@ -39,7 +40,6 @@ const buildSchema = graphql.buildSchema;
     deleteContact(id: ID!): String
   }
 `;
-  const contactSchema = buildSchema(contactSchemaStr);
 
   const root = {
     contacts: () => Contact.findAll(),
