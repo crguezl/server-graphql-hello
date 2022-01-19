@@ -51,7 +51,7 @@ const gql = s => buildSchema(s[0]); // Just for syntax  coloring VSCode GraphQL 
       await c.update({ firstName, lastName, email });
       return c;
     },
-    deleteContact: ({ id }) => Contact.Destroy({ where: { id: id } }),
+    deleteContact: ({ id }) => Contact.destroy({ where: { id: id } }),
   };
 
   const app = express();
