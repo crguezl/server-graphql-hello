@@ -8,7 +8,7 @@ const {
 const { graphqlHTTP } = require("express-graphql");
 const graphql = require("graphql");
 const buildSchema = graphql.buildSchema;
-const gql = s => buildSchema(s[0]); // Just for syntax  coloring
+const gql = s => buildSchema(s[0]); // Just for syntax  coloring VSCode GraphQL extension
 
 (async () => {
   await sequelize.sync();
