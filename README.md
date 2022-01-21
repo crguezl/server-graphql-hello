@@ -107,9 +107,14 @@ graphql playground at <localhost:4000/graphql>
 
 See the queries in file [requests-examples.gql](requests-examples.gql)
 
-## Heroku 
+## Optional Extensions
 
-* [Deploying Node.js Apps on Heroku](https://devcenter.heroku.com/articles/deploying-nodejs)
+### Deploy in Heroku
+  * [Deploying Node.js Apps on Heroku](https://devcenter.heroku.com/articles/deploying-nodejs)
+
+### Add authentication
+    * See [Handling authentication in your GraphQL-powered Vue app](https://blog.logrocket.com/handling-authentication-in-your-graphql-powered-vue-app/) by [Anjolaoluwa Adebayo-Oyetoro](https://blog.logrocket.com/author/anjolaoluwaadebayooyetoro/)
+
 
 ## References
 
